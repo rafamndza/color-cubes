@@ -30,3 +30,37 @@ function createGrid() {
     divPixels.innerHTML += "<div class=\"pixel\"></div>";
   }
 }
+
+
+function addColorListeners() {
+    const colorElements = document.querySelectorAll(".color");
+  
+    for (let i = 0; i < colorElements.length; i++) {
+      const divColor = colorElements[i];
+      divColor.addEventListener("click", function () {
+        selectedColor = colors[i];
+        colorElements.forEach((element) => element.classList.remove("selected"));
+        divColor.classList.add("selected");
+        playSound("beep");
+      });
+    }
+  }
+  
+  function addPixelListeners() {
+    const pixelElements = document.querySelectorAll(".pixel");
+  
+    for (let i = 0; i < pixelElements.length; i++) {
+      const divPixel = pixelElements[i];
+      divPixel.addEventListener("click", function () {
+        divPixel.style.setProperty("--color", selectedColor);
+        playSound("pixel");
+      });
+    }
+  }
+  
+  createColors();
+  createGrid();
+  addColorListeners();
+  addPixelListeners();
+  
+  
